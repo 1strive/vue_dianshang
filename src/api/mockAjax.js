@@ -1,7 +1,7 @@
 /*
  * @Author: JA
- * @Date: 2022-03-07 18:55:14
- * @LastEditTime: 2022-03-07 22:13:07
+ * @Date: 2022-03-07 21:56:39
+ * @LastEditTime: 2022-03-07 22:09:31
  * @LastEditors: JA
  */
 //对于axios进行二次封装
@@ -14,10 +14,10 @@ import "nprogress/nprogress.css";//有问题
 //此处requests就是axios，只不过配置一下
 const requests = axios.create({
     //基础路径
-    baseURL: "/api",//有问题 失效
+    baseURL: "/mock",
     //请求不能超过5S
     timeout: 5000,
-  });
+});
 //请求拦截器：在发请求之前，请求拦截器可以检测到，可以在请求发出
 //之前完成一些业务
 
@@ -33,7 +33,7 @@ requests.interceptors.response.use((res) => {
     nprogress.done()
     return res.data
 }, (error) => {
-return Promise.reject(new Error('faile'))
+    return Promise.reject(new Error('faile'))
 })
 
 export default requests

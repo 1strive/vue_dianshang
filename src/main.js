@@ -1,7 +1,14 @@
+/*
+ * @Author: JA
+ * @Date: 2022-03-07 18:55:14
+ * @LastEditTime: 2022-03-07 21:43:31
+ * @LastEditors: JA
+ */
 import Vue from 'vue'
 import App from './App.vue'
 import router from "@/router";
 import store from "@/store"
+import '@/mock/mockServe'//引入mockServe 使其执行一次
 Vue.config.productionTip = false
 
 
