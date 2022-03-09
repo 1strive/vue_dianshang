@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style lang='less'>
+<style scoped lang='less'>
  .rank {
         width: 1200px;
         margin: 0 auto;

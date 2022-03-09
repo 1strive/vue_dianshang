@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<style lang='less'>
+<style scoped lang='less'>
  .like {
         margin-top: 15px;
 

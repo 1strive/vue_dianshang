@@ -9,6 +9,9 @@ import App from './App.vue'
 import router from "@/router";
 import store from "@/store"
 import '@/mock/mockServe'//引入mockServe 使其执行一次
+import 'swiper/css/swiper.css'
+
+
 Vue.config.productionTip = false
 
 

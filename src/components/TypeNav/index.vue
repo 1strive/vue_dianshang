@@ -126,7 +126,8 @@ export default {
         this.sortShow = true;
       }
     },
-    leaveShow(index) {
+    leaveShow() {
+      this.currentIndex = -1;
       if (this.$route.path != "/home") {
         //鼠标移出
         this.currentIndex = -1;
