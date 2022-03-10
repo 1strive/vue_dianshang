@@ -17,8 +17,11 @@ Vue.config.productionTip = false
 
 //将三级联动组件注册为全局组件
 import TypeNav from '@/components/TypeNav'
+import Carousel from '@/components/Carsousel'
 //参数一：全局组件的名字 参数二：哪一个组件
 Vue.component(TypeNav.name,TypeNav)
+Vue.component(Carousel.name,Carousel)
+
 
 
 

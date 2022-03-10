@@ -1,5 +1,5 @@
 <template>
-   <div class="floor">
+  <div class="floor">
     <div class="py-container">
       <div class="title clearfix">
         <h3 class="fl">{{ list.name }}</h3>
@@ -24,7 +24,7 @@
             </div>
             <div class="floorBanner">
               <!-- 轮播图的地方 -->
-               <Carsousel :list="list.carouselList" />
+              <Carsousel :list="list.carouselList" />
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
@@ -58,10 +58,16 @@
 export default {
   name: "",
   props: ["list"],
+  //组件挂载完毕的地方
+  mounted() {
+    //第一次书写Swiper的时候：在mounted当中书写是不可以的，但是为什么现在这里可以啦！
+    //第一次书写轮播图的时候，是在当前组件内部发请求、动态渲染解构【前台至少服务器数据需要回来】，因此当年的写法在这里不行
+    //现在的这种写法为什么可以：因为请求是父组件发的，父组件通过props传递过来的，而且结构都已经有了的情况下执行mounted
+  },
 };
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .floor {
   margin-top: 15px;
 
@@ -70,8 +76,9 @@ export default {
     margin: 0 auto;
 
     .title {
+        display: flex;
+        justify-content:space-between;
       .fl {
-        float: left;
         color: #c81623;
         font-size: 20px;
         line-height: 30px;
@@ -80,15 +87,13 @@ export default {
       }
 
       .fr {
-        float: right;
-
         .nav-tabs {
           margin: 10px 0 0;
           display: inline-block;
 
           li {
-            float: left;
-            line-height: 18px;
+            float: right;
+            line-height: 35px;
 
             a {
               padding-top: 1px;

@@ -5,12 +5,12 @@
     <div class="top">
       <div class="container">
         <div class="loginList">
-          <p>尚品汇欢迎您！</p>
-          <p>
-            <span>请</span>
-            <a href="###">登录</a>
-            <a href="###" class="register">免费注册</a>
-          </p>
+          <div class="start">
+              尚品汇欢迎您！
+              <span>请</span>
+              <a href="###">登录</a>
+              <a href="###" class="register">免费注册</a>
+          </div>
         </div>
         <div class="typeList">
           <a href="###">我的订单</a>
@@ -79,6 +79,7 @@ export default {
 
 <style scoped lang="less">
 .header {
+  // & ：代表的上一层选择器的名字
   & > .top {
     background-color: #eaeaea;
     height: 30px;
@@ -88,20 +89,17 @@ export default {
       width: 1200px;
       margin: 0 auto;
       overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+
+
 
       .loginList {
-        float: left;
-
-        p {
-          float: left;
-          margin-right: 10px;
-
           .register {
             border-left: 1px solid #b3aeae;
             padding: 0 5px;
             margin-left: 5px;
           }
-        }
       }
 
       .typeList {
