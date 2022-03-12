@@ -6,10 +6,10 @@
       <div class="container">
         <div class="loginList">
           <div class="start">
-              尚品汇欢迎您！
-              <span>请</span>
-              <a href="###">登录</a>
-              <a href="###" class="register">免费注册</a>
+            尚品汇欢迎您！
+            <span>请</span>
+            <a href="###">登录</a>
+            <a href="###" class="register">免费注册</a>
           </div>
         </div>
         <div class="typeList">
@@ -28,7 +28,7 @@
     <div class="bottom">
       <h1 class="logoArea">
         <a class="logo" title="尚品汇" href="###" target="_blank">
-          <img src="./images/logo.png" alt="" />
+          <img src="./images/logo.png" alt="在线商城" @click="returnHome" />
         </a>
       </h1>
       <div class="searchArea">
@@ -38,6 +38,7 @@
             id="autocomplete"
             class="input-error input-xxlarge"
             v-model="keyword"
+            @keyup.enter="goSearch"
           />
           <button
             class="sui-btn btn-xlarge btn-danger"
@@ -73,6 +74,15 @@ export default {
         this.$router.push(location);
       }
     },
+    returnHome(e) {
+      e.preventDefault(); //关闭a标签的默认行为
+      this.$router.push({ name: "home" });
+    },
+  },
+  mounted() {
+    this.$bus.$on("clear", () => {
+      this.keyword = "";
+    });
   },
 };
 </script>
@@ -92,14 +102,12 @@ export default {
       display: flex;
       justify-content: space-between;
 
-
-
       .loginList {
-          .register {
-            border-left: 1px solid #b3aeae;
-            padding: 0 5px;
-            margin-left: 5px;
-          }
+        .register {
+          border-left: 1px solid #b3aeae;
+          padding: 0 5px;
+          margin-left: 5px;
+        }
       }
 
       .typeList {

@@ -1,3 +1,9 @@
+<!--
+ * @Author: JA
+ * @Date: 2022-03-07 18:55:14
+ * @LastEditTime: 2022-03-12 13:11:14
+ * @LastEditors: JA
+-->
 <template>
   <div>
     <!-- TypeNav组件已是全局组件，无需再次注册 -->
@@ -43,4 +49,7 @@ export default {
 </script>
 
 <style>
+*{
+  list-style: none;
+}
 </style>

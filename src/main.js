@@ -1,7 +1,7 @@
 /*
  * @Author: JA
  * @Date: 2022-03-07 18:55:14
- * @LastEditTime: 2022-03-07 21:43:31
+ * @LastEditTime: 2022-03-12 20:56:29
  * @LastEditors: JA
  */
 import Vue from 'vue'
@@ -19,14 +19,16 @@ Vue.config.productionTip = false
 import TypeNav from '@/components/TypeNav'
 import Carousel from '@/components/Carsousel'
 //参数一：全局组件的名字 参数二：哪一个组件
-Vue.component(TypeNav.name,TypeNav)
-Vue.component(Carousel.name,Carousel)
-
+Vue.component(TypeNav.name, TypeNav)
+Vue.component(Carousel.name, Carousel)
 
 
 
 new Vue({
   render: h => h(App),
+  beforeCreate() {
+    Vue.prototype.$bus = this
+  },
   router,
   //注册仓库：组件实例的身上会多一个$store的属性
   store,

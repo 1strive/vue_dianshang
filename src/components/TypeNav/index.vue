@@ -95,7 +95,6 @@ export default {
   },
   //组件挂载完毕，可以向服务器发请求
   mounted() {
-    console.log("this", this);
     // //通知Vuex发请求，获取数据，存储与仓库当中 (转移到App中 只派发一次数)
     // this.$store.dispatch("categoryList");
     if (this.$route.path != "/home") {
@@ -105,10 +104,9 @@ export default {
   computed: {
     //...对mapState方法返回的对象进行展开，返回为计算属性
     ...mapState({
-      //右侧需要的是一个函数，当使用此计算属性时该函数会立即执行一次
+      //右侧需要的是一个函数(方法)，当使用此计算属性时该函数会立即执行一次
       //注入一个参数state，即为大仓库中的数据
       categoryList: (state) => {
-        console.log(state);
         return state.home.categoryList.data;
       },
     }),
@@ -159,7 +157,6 @@ export default {
         }
         //判断：如果路由跳转的时候，带有params参数，捎带脚传递过去
         if (this.$route.params) {
-          console.log(this);
           location.params = this.$route.params;
           //动态给location配置对象添加query属性
           location.query = query;

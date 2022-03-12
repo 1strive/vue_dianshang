@@ -99,6 +99,7 @@ export default {
 </script>
 
 <style  scoped lang = 'less'>
+
 .list-container {
   width: 1200px;
   margin: 0 auto;
