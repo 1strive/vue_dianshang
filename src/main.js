@@ -1,7 +1,7 @@
 /*
  * @Author: JA
  * @Date: 2022-03-07 18:55:14
- * @LastEditTime: 2022-03-12 20:56:29
+ * @LastEditTime: 2022-03-13 15:26:06
  * @LastEditors: JA
  */
 import Vue from 'vue'
@@ -18,9 +18,11 @@ Vue.config.productionTip = false
 //将三级联动组件注册为全局组件
 import TypeNav from '@/components/TypeNav'
 import Carousel from '@/components/Carsousel'
+import Pagination from '@/components/Pagination'
 //参数一：全局组件的名字 参数二：哪一个组件
 Vue.component(TypeNav.name, TypeNav)
 Vue.component(Carousel.name, Carousel)
+Vue.component(Pagination.name, Pagination)
 
 
 

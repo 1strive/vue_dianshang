@@ -1,3 +1,9 @@
+<!--
+ * @Author: JA
+ * @Date: 2022-03-11 21:47:02
+ * @LastEditTime: 2022-03-13 16:21:58
+ * @LastEditors: JA
+-->
 <template>
   <div class="swiper-container" ref="cur">
     <div class="swiper-wrapper">
@@ -22,7 +28,7 @@
 import Swiper from "swiper";
 export default {
   name: "Carsousel",
-  props: ["list"],
+  props: ['list'],
   watch: {
     //监听bannerList数据的变化，因为这条数据发生过变化---由空数组变为数组里面有四个元素
     list: {

@@ -43,23 +43,29 @@
             <div class="navbar-inner filter">
               <!-- 价格结构 -->
               <ul class="sui-nav">
-                <li class="active">
-                  <a href="#">综合</a>
+                <li :class="{ active: isOne }" @click="changeOrder('1')">
+                  <a
+                    >综合<span
+                      v-show="isOne"
+                      class="iconfont"
+                      :class="{
+                        'icon-jiantou_xiangxia': isDesc,
+                        'icon-jiantou_xiangshang': isAsc,
+                      }"
+                    ></span
+                  ></a>
                 </li>
-                <li>
-                  <a href="#">销量</a>
-                </li>
-                <li>
-                  <a href="#">新品</a>
-                </li>
-                <li>
-                  <a href="#">评价</a>
-                </li>
-                <li>
-                  <a href="#">价格⬆</a>
-                </li>
-                <li>
-                  <a href="#">价格⬇</a>
+                <li :class="{ active: isTwo }" @click="changeOrder('2')">
+                  <a
+                    >价格<span
+                      v-show="isTwo"
+                      class="iconfont"
+                      :class="{
+                        'icon-jiantou_xiangxia': isDesc,
+                        'icon-jiantou_xiangshang': isAsc,
+                      }"
+                    ></span
+                  ></a>
                 </li>
               </ul>
             </div>
@@ -111,35 +117,7 @@
             </ul>
           </div>
           <!-- 分页器 -->
-          <div class="fr page">
-            <div class="sui-pagination clearfix">
-              <ul>
-                <li class="prev disabled">
-                  <a href="#">«上一页</a>
-                </li>
-                <li class="active">
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#">2</a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">4</a>
-                </li>
-                <li>
-                  <a href="#">5</a>
-                </li>
-                <li class="dotted"><span>...</span></li>
-                <li class="next">
-                  <a href="#">下一页»</a>
-                </li>
-              </ul>
-              <div><span>共10页&nbsp;</span></div>
-            </div>
-          </div>
+          <Pagination :pageNo="1" :pageSize="3" :total="91" :continues="5" />
         </div>
       </div>
     </div>
@@ -162,11 +140,11 @@ export default {
         //关键字
         keyword: "",
         //价格排序
-        order: "",
+        order: "1:desc",
         //当前页数
         pageNo: 1,
         //展示数据个数
-        pageSize: 5,
+        pageSize: 3,
         //平台售卖属性及相应属性值
         props: [],
         //品牌
@@ -243,6 +221,20 @@ export default {
       //再次发请求
       this.getData();
     },
+    changeOrder(flag) {
+      let originFlag = this.searchParams.order.split(":")[0];
+      let originSort = this.searchParams.order.split(":")[1];
+      let newOrder = "";
+      //判断的是多次点击的是不是同一个按钮
+      if (flag == originFlag) {
+        newOrder = `${originFlag}:${originSort == "desc" ? "asc" : "desc"}`;
+      } else {
+        //点击不是同一个按钮
+        newOrder = `${flag}:${"desc"}`;
+      }
+      this.searchParams.order = newOrder;
+      this.getData();
+    },
   },
   beforeMount() {
     //在挂载完毕之前（给服务器发请求之前）整理好给服务器发送的数据（主要是数据生成之后，请求之前的生命周期都可以）
@@ -257,6 +249,18 @@ export default {
   computed: {
     //此处可以用数组形式 因为getters计算是不划分模块(仓库)的
     ...mapGetters(["goodsList"]),
+    isOne() {
+      return this.searchParams.order.indexOf("1") != -1;
+    },
+    isTwo() {
+      return this.searchParams.order.indexOf("2") != -1;
+    },
+    isAsc() {
+      return this.searchParams.order.indexOf("asc") != -1;
+    },
+    isDesc() {
+      return this.searchParams.order.indexOf("desc") != -1;
+    },
   },
   //监听组件实例身上的$route属性
   watch: {
