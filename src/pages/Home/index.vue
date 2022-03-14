@@ -1,3 +1,9 @@
+<!--
+ * @Author: JA
+ * @Date: 2022-03-07 18:55:14
+ * @LastEditTime: 2022-03-12 13:11:14
+ * @LastEditors: JA
+-->
 <template>
   <div>
     <!-- TypeNav组件已是全局组件，无需再次注册 -->
@@ -6,7 +12,7 @@
     <Recommend />
     <Rank />
     <Like />
-    <Floor />
+    <Floor v-for="(floor, index) in floorList" :key="floor.id" :list="floor" />
     <Brand />
   </div>
 </template>
@@ -31,8 +37,19 @@ export default {
     Floor,
     Brand,
   },
+  computed: {
+    ...mapState({
+      floorList: (state) => state.home.floorList,
+    }),
+  },
+  mounted() {
+    this.$store.dispatch("getFloorList");
+  },
 };
 </script>
 
 <style>
+*{
+  list-style: none;
+}
 </style>

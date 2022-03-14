@@ -4,14 +4,15 @@
  * @LastEditTime: 2022-03-07 22:29:08
  * @LastEditors: JA
  */
-import { reqCategoryList, reqGetBannerList } from '@/api'
+import { reqCategoryList, reqGetBannerList ,reqFloorList } from '@/api'
 
 
 //state：仓库存储数据的地方
 const state = {
     // state中默认初始值数据类型与服务器返回数据类型保持一致
     categoryList: [],//初始值为空数组
-    bannerList: []
+    bannerList: [],
+    floorList:[]
 };
 //mutations：修改state的唯一手段
 const mutations = {
@@ -20,6 +21,9 @@ const mutations = {
     },
     GETBANNERLIST(state,bannerList){
         state.bannerList = bannerList
+    },
+    GETFLOORLIST(state,floorList){
+        state.floorList = floorList
     }
 };
 //action:处理action，书写自己的业务逻辑，也可以处理异步
@@ -34,6 +38,12 @@ const actions = {
         let result = await reqGetBannerList();
         if (result.code == 200) {
             commit('GETBANNERLIST', result.data)
+        }
+    },
+    async getFloorList({commit}){
+        let result = await reqFloorList()
+        if(result.code == 200){
+            commit('GETFLOORLIST',result.data)
         }
     }
 

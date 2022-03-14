@@ -3,29 +3,8 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <div class="swiper-container" id="mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg" />
-            </div>
-            <!-- <div class="swiper-slide">
-              <img src="./images/banner2.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner3.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner4.jpg" />
-            </div> -->
-          </div>
-          <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
-
-          <!-- 如果需要导航按钮 -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-        </div>
-      </div>
+           <Carsousel :list="bannerList" />
+             </div>
       <div class="right">
         <div class="news">
           <h4>
@@ -100,24 +79,27 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+``;
+import { mapState } from "vuex";
 
 
 export default {
-  name:'ListContainer',
-  mounted(){
+  name: "ListContainer",
+  mounted() {
     //派发action,通过Vuex发起ajax请求，将数据存储在仓库当中
-    this.$store.dispatch('getBannerList')
+    this.$store.dispatch("getBannerList");
   },
-  computed:{
+  computed: {
     ...mapState({
-      bannerList:state=>state.home.bannerList
-    })
-  }
+      bannerList: (state) => state.home.bannerList,
+    }),
+  },
+ 
 };
 </script>
 
-<style lang = 'less'>
+<style  scoped lang = 'less'>
+
 .list-container {
   width: 1200px;
   margin: 0 auto;

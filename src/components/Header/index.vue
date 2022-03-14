@@ -5,12 +5,12 @@
     <div class="top">
       <div class="container">
         <div class="loginList">
-          <p>尚品汇欢迎您！</p>
-          <p>
+          <div class="start">
+            尚品汇欢迎您！
             <span>请</span>
             <a href="###">登录</a>
             <a href="###" class="register">免费注册</a>
-          </p>
+          </div>
         </div>
         <div class="typeList">
           <a href="###">我的订单</a>
@@ -28,7 +28,7 @@
     <div class="bottom">
       <h1 class="logoArea">
         <a class="logo" title="尚品汇" href="###" target="_blank">
-          <img src="./images/logo.png" alt="" />
+          <img src="./images/logo.png" alt="在线商城" @click="returnHome" />
         </a>
       </h1>
       <div class="searchArea">
@@ -38,6 +38,7 @@
             id="autocomplete"
             class="input-error input-xxlarge"
             v-model="keyword"
+            @keyup.enter="goSearch"
           />
           <button
             class="sui-btn btn-xlarge btn-danger"
@@ -73,12 +74,22 @@ export default {
         this.$router.push(location);
       }
     },
+    returnHome(e) {
+      e.preventDefault(); //关闭a标签的默认行为
+      this.$router.push({ name: "home" });
+    },
+  },
+  mounted() {
+    this.$bus.$on("clear", () => {
+      this.keyword = "";
+    });
   },
 };
 </script>
 
 <style scoped lang="less">
 .header {
+  // & ：代表的上一层选择器的名字
   & > .top {
     background-color: #eaeaea;
     height: 30px;
@@ -88,19 +99,14 @@ export default {
       width: 1200px;
       margin: 0 auto;
       overflow: hidden;
+      display: flex;
+      justify-content: space-between;
 
       .loginList {
-        float: left;
-
-        p {
-          float: left;
-          margin-right: 10px;
-
-          .register {
-            border-left: 1px solid #b3aeae;
-            padding: 0 5px;
-            margin-left: 5px;
-          }
+        .register {
+          border-left: 1px solid #b3aeae;
+          padding: 0 5px;
+          margin-left: 5px;
         }
       }
 
