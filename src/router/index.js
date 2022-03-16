@@ -1,11 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../pages/Home'
-import Login from '@/pages/Login'
-import Search from '@/pages/Search'
-import Register from '@/pages/Register'
 
-
+import routes from "./routes";
 Vue.use(VueRouter)
 
 
@@ -34,37 +30,11 @@ VueRouter.prototype.replace = function(location,resolve,reject){
 
 
 const router = new VueRouter({
-    routes: [
-        {
-            name: "home",
-            path: '/home',
-            component: Home,
-            meta: { show: true },
-        },
-        {
-            name: "login",
-            path: '/login',
-            component: Login,
-            meta: { show: true },
-        },
-        {
-            name: "search",
-            path: '/search/:keyword?',//params参数需要占位
-            component: Search,
-            meta: { show: false },
-            props($route) {
-                return {
-                  keyword:$route.params.keyword,
-                  k:$route.query.k
-                }
-            }
-        },
-        {
-            name: "register",
-            path: '/register',
-            component: Register,
-            meta: { show: false },
-        },
-    ]
+    routes,
+    //滚动行为
+  scrollBehavior(to, from, savedPosition) {
+    //返回的这个y=0，代表的滚动条在最上方
+    return { y: 0 };
+  },
 })
 export default router
