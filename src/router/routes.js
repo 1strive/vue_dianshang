@@ -3,8 +3,8 @@ import Login from '@/pages/Login'
 import Search from '@/pages/Search'
 import Register from '@/pages/Register'
 import Detail from '@/pages/Detail'
-
-
+import AddCartSuccess from '@/pages/AddCartSuccess'
+import ShopCart from '@/pages/ShopCart'
 export default [
     {
         name: "detail",
@@ -31,8 +31,8 @@ export default [
         meta: { show: false },
         props($route) {
             return {
-              keyword:$route.params.keyword,
-              k:$route.query.k
+                keyword: $route.params.keyword,
+                k: $route.query.k
             }
         }
     },
@@ -41,5 +41,15 @@ export default [
         path: '/register',
         component: Register,
         meta: { show: false },
+    },
+    {
+        name: 'addcartsuccess',
+        path: '/addcartsuccess',
+        component: AddCartSuccess
+    },
+    {
+        name: 'shopcart',
+        path: '/shopcart',
+        component: ShopCart,
     },
 ]

@@ -21,8 +21,14 @@ export const reqFloorList = () => mockRequests.get('/floor')
 
 //获取搜索模块的数据 地址：/api/list 请求方式post 需要带参
 //此处给服务器传参至少携带一个空对象
-export const reqGetSearchInfo = (params) => requests({url: '/list', method: 'post',data:params})
+export const reqGetSearchInfo = (params) => requests({ url: '/list', method: 'post', data: params })
 
 //获取产品详情信息的接口 URL:/api/item/{skuId} 请求方式：get
 
-export const reqGoodsInfo = (skuId)=>requests({url:`/item/${skuId}`,method:'get'})
+export const reqGoodsInfo = (skuId) => requests({ url: `/item/${skuId}`, method: 'get' })
+
+//将产品添加购物车（或更新购物车）
+export const reqAddOrUpdateShopCart = (skuId, skuNum) => requests({ url: `/cart/addToCart/${skuId}/${skuNum}`, method: "post" })
+
+//获取购物车列表数据接口
+export const reqCartList = () => requests({ url: '/cart/cartList ', method: 'get' })
