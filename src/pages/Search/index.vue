@@ -80,9 +80,9 @@
               >
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="item.html" target="_blank"
+                    <router-link :to="`/detail/${good.id}`"
                       ><img :src="good.defaultImg"
-                    /></a>
+                    /></router-link>
                   </div>
                   <div class="price">
                     <strong>
@@ -117,7 +117,13 @@
             </ul>
           </div>
           <!-- 分页器 -->
-          <Pagination :pageNo="1" :pageSize="3" :total="91" :continues="5" />
+          <Pagination
+            :pageNo="searchParams.pageNo"
+            :pageSize="searchParams.pageSize"
+            :total="total"
+            :continues="5"
+            @getPageNo="getPageNo"
+          />
         </div>
       </div>
     </div>
@@ -126,7 +132,7 @@
 
 <script>
 import SearchSelector from "./SearchSelector/SearchSelector";
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "Search",
   data() {
@@ -235,6 +241,13 @@ export default {
       this.searchParams.order = newOrder;
       this.getData();
     },
+    //自定义事件的回调函数---获取当前第几页
+    getPageNo(pageNo) {
+      //整理带给服务器参数
+      this.searchParams.pageNo = pageNo;
+      //再次发请求
+      this.getData();
+    },
   },
   beforeMount() {
     //在挂载完毕之前（给服务器发请求之前）整理好给服务器发送的数据（主要是数据生成之后，请求之前的生命周期都可以）
@@ -261,6 +274,9 @@ export default {
     isDesc() {
       return this.searchParams.order.indexOf("desc") != -1;
     },
+    ...mapState({
+      total: (state) => state.search.searchList.total,
+    }),
   },
   //监听组件实例身上的$route属性
   watch: {
