@@ -16,7 +16,7 @@
       <div class="content">
         <label>验证码:</label>
         <input type="text" placeholder="请输入验证码" v-model="code" />
-        <button style="width: 100px; height: 38px" @click="getCode(phone)">
+        <button style="width: 100px; height: 38px" @click="getCode">
           获取验证码
         </button>
         <span class="error-msg">错误提示信息</span>
@@ -71,8 +71,13 @@ export default {
   },
   mounted() {},
   methods: {
-    getCode(phone) {
-      this.$store.dispatch("getCode", phone);
+    async getCode() {
+      try {
+        const { phone } = this;
+        //判断phone是否存在且dispatch返回的Promise是否为error
+        phone && (await this.$store.dispatch("getCode", phone));
+        this.code = this.$store.state.user.code;
+      } catch (error) {console.error('fail');}
     },
   },
 };
