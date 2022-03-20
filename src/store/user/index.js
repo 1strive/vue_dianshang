@@ -5,7 +5,7 @@
  * @LastEditors: JA
  */
 //登录与注册的模块
-import { reqGetCode, reqUserRegister, reqUserLogin, reqUserInfo } from "@/api"
+import { reqGetCode, reqUserRegister, reqUserLogin, reqUserInfo,reqLogout } from "@/api"
 import { setToken, getToken, removeToken } from "@/utils/token";
 const state = {
     code: "",
@@ -74,6 +74,18 @@ const actions = {
             return 'ok'
         } else {
             return Promise.reject(new Error('falie'))
+        }
+    },
+    //退出登录
+    async userLogout({commit}){
+        //只是向服务器发起一次请求，通知服务器清除token
+        let result = await reqLogout()
+        //action里面不能操作state,提交mutation修改state
+        if(result.code == 200){
+            commit('CLEAR')
+            return 'ok'
+        }else{
+            return Promise.reject(new Error('faile'))
         }
     }
 }

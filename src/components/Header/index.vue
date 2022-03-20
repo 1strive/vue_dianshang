@@ -18,13 +18,13 @@
             <!-- 登录了 -->
             <p v-else>
               <a>{{ userName }}</a>
-              <!-- <a class="register" @click="logout">退出登录</a> -->
+              <a class="register" @click="logout" href="">退出登录</a>
             </p>
           </div>
         </div>
         <div class="typeList">
-          <a href="###">我的订单</a>
-          <a href="###">我的购物车</a>
+           <router-link to="/center/myorder">我的订单</router-link>
+          <router-link to="/shopcart">我的购物车</router-link>
           <a href="###">我的尚品汇</a>
           <a href="###">尚品汇会员</a>
           <a href="###">企业采购</a>
@@ -88,6 +88,21 @@ export default {
       e.preventDefault(); //关闭a标签的默认行为
       this.$router.push({ name: "home" });
     },
+    //退出登录
+    async logout(e){
+      e.preventDefault()
+      //退出登录需要做的事情
+      //1.需要发请求，通知服务器退出登录【清除token】
+      //2.清除项目当中的数据【userInfo、token】
+      try{
+        //如果退出成功
+        await this.$store.dispatch('userLogout')
+        //回到首页
+        this.$router.push('/home')
+      }catch(error){
+
+      }
+    }
   },
   mounted() {
     this.$bus.$on("clear", () => {

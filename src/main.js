@@ -10,7 +10,8 @@ import router from "@/router";
 import store from "@/store"
 import '@/mock/mockServe'//引入mockServe 使其执行一次
 import 'swiper/css/swiper.css'
-
+//统一引入
+import * as API from '@/api';
 
 Vue.config.productionTip = false
 
@@ -30,6 +31,7 @@ new Vue({
   render: h => h(App),
   beforeCreate() {
     Vue.prototype.$bus = this
+    Vue.prototype.$API = API;
   },
   router,
   //注册仓库：组件实例的身上会多一个$store的属性
