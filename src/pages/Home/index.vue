@@ -1,7 +1,7 @@
 <!--
  * @Author: JA
  * @Date: 2022-03-07 18:55:14
- * @LastEditTime: 2022-03-12 13:11:14
+ * @LastEditTime: 2022-03-20 15:15:56
  * @LastEditors: JA
 -->
 <template>
@@ -44,12 +44,13 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getFloorList");
+    this.$store.dispatch("getUserInfo");
   },
 };
 </script>
 
 <style>
-*{
+* {
   list-style: none;
 }
 </style>

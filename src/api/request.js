@@ -1,7 +1,7 @@
 /*
  * @Author: JA
  * @Date: 2022-03-07 18:55:14
- * @LastEditTime: 2022-03-07 22:13:07
+ * @LastEditTime: 2022-03-20 15:22:53
  * @LastEditors: JA
  */
 //对于axios进行二次封装
@@ -29,6 +29,10 @@ requests.interceptors.request.use((config) => {
     if (store.state.detail.uuid_token) {
         //请求头添加一个字段(userTempId):和后台老师商量好了
         config.headers.userTempId = store.state.detail.uuid_token
+    }
+    //需要携带token带给服务器
+    if(store.state.user.token){
+        config.headers.token = store.state.user.token
     }
 
     nprogress.start()
