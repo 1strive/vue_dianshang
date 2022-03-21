@@ -91,10 +91,10 @@ export default {
     },
     //用户注册
     async userRegister() {
-      // const success = await this.$validator.validateAll();
+      const success = await this.$validator.validateAll();
       //全部表单验证成功，再向服务器发请求，进行注册
       //只要有一个表单没有成功，不会发请求
-      // if (success) {
+      if (success) {
         try {
           const { phone, code, password, password1 } = this;
           await this.$store.dispatch("userRegister", {
@@ -110,7 +110,7 @@ export default {
         }
       }
     },
-  // },
+  },
 };
 </script>
 

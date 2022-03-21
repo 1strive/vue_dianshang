@@ -1,6 +1,8 @@
 import Home from '../pages/Home'
 import Login from '@/pages/Login'
-import Search from '@/pages/Search'
+// import Search from '@/pages/Search'
+const Search = () => import('@/pages/Search')
+//路由懒加载
 import Register from '@/pages/Register'
 import Detail from '@/pages/Detail'
 import AddCartSuccess from '@/pages/AddCartSuccess'
@@ -116,4 +118,5 @@ export default [
             }
           ]
     },
+    
 ]
